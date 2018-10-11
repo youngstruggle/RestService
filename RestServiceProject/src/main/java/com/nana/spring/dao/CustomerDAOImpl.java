@@ -11,6 +11,10 @@ import org.springframework.stereotype.Repository;
 import com.nana.spring.model.Customer;
 import com.nana.spring.util.HibernateUtil;
 
+/**
+ * @author Nana Febriana
+ */
+
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
 

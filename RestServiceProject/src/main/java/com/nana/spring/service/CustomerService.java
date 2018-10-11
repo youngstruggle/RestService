@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.nana.spring.model.Customer;
 
+/**
+ * @author Nana Febriana
+ */
+
 public interface CustomerService {
 
 	public abstract List<Customer> list();

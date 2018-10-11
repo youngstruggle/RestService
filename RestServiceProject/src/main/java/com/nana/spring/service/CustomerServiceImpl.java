@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import com.nana.spring.dao.CustomerDAO;
 import com.nana.spring.model.Customer;
 
+/**
+ * @author Nana Febriana
+ */
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 

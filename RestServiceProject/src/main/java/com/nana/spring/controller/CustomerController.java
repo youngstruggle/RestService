@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nana.spring.model.Customer;
 import com.nana.spring.service.CustomerService;
 
+/**
+ * @author Nana Febriana
+ */
+
 @RestController
 public class CustomerController {
 
