@@ -2,6 +2,8 @@ package com.nana.spring.model;
 
 // Generated Oct 11, 2018 11:31:39 AM by Hibernate Tools 3.4.0.CR1
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,8 +16,10 @@ import javax.persistence.GenerationType;
  */
 @Entity
 @Table(name = "customer", catalog = "RESTAPI")
-public class Customer implements java.io.Serializable {
+public class Customer implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String firstName;
 	private String lastName;

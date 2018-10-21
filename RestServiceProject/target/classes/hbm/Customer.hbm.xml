@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 11, 2018 11:31:39 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.nana.spring.model.Customer" table="customer"
+		catalog="RESTAPI">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="firstName" type="string">
+			<column name="firstName" length="20" />
+		</property>
+		<property name="lastName" type="string">
+			<column name="lastName" length="20" />
+		</property>
+		<property name="email" type="string">
+			<column name="email" length="30" />
+		</property>
+		<property name="mobile" type="string">
+			<column name="mobile" length="20" />
+		</property>
+	</class>
+</hibernate-mapping>

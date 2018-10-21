@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 21, 2018 10:32:35 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nana.spring.model.Friend" table="friend" catalog="RESTAPI">
+        <id name="id" type="string">
+            <column name="id" length="50" />
+            <generator class="uuid" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="firstName" length="50" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="lastName" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
