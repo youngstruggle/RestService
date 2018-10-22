@@ -6,22 +6,14 @@ import com.nana.spring.model.Friend;
 
 public interface FriendDAO {
 
-	/* Get Friend */
 	public abstract List<Friend> list();
-
-	/* Get Friend By Id */
 	public abstract Friend get(String id);
-
-	/* Create Friend */
 	public abstract Friend create(Friend friend);
-
-	/* Delete Friend */
 	public abstract Friend delete(String id);
-
-	/* Update Friend */
 	public abstract Friend update(Friend friend);
-
-	/* Find Friend By Id */
 	public abstract Friend findFriend(String custId);
+	public abstract List<Friend> findFirstAndLastName(String firstName, String lastName);
+	public abstract List<Friend> findFirstName(String firstName);
+	public abstract List<Friend> findLastName(String lastName);
 
 }

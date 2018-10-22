@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nana.spring.model.Friend;
@@ -29,25 +30,12 @@ public class FriendController {
 	/* Get friends */
 	@GetMapping("/friends")
 	public List<Friend> getFriends() {
-		System.out.println("----- Get friends -----");
 		return friendService.list();
-	}
-
-	/* Get friends By Id */
-	@GetMapping("/friends/{id}")
-	public ResponseEntity<Friend> getFriends(@PathVariable("id") String id) {
-		System.out.println("----- Get friends By Id -----");
-		Friend friend = friendService.get(id);
-		if (friend == null) {
-			return new ResponseEntity<Friend>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Friend>(friend, HttpStatus.OK);
 	}
 
 	/* Create friends */
 	@PostMapping(value = "/friends")
 	public ResponseEntity<Friend> createFriends(@RequestBody Friend friend) {
-		System.out.println("----- Create friends -----");
 		if (friend == null) {
 			return new ResponseEntity<Friend>(HttpStatus.EXPECTATION_FAILED);
 		} else {
@@ -59,7 +47,6 @@ public class FriendController {
 	/* Delete friends */
 	@DeleteMapping("/friends/{id}")
 	public ResponseEntity<Friend> deleteFriends(@PathVariable String id) {
-		System.out.println("----- Delete friends -----");
 		if (null == friendService.delete(id)) {
 			return new ResponseEntity<Friend>(HttpStatus.NOT_FOUND);
 		}
@@ -70,7 +57,6 @@ public class FriendController {
 	@PutMapping("/friends/{id}")
 	public ResponseEntity<Friend> updateFriends(
 			@PathVariable("id") String custId, @RequestBody Friend friend) {
-		System.out.println("----- Update friends -----");
 		Friend friendById = friendService.findFriend(custId);
 		if (friendById == null) {
 			return new ResponseEntity<Friend>(HttpStatus.NOT_FOUND);
@@ -80,4 +66,35 @@ public class FriendController {
 		friendService.update(friendById);
 		return new ResponseEntity<Friend>(friend, HttpStatus.OK);
 	}
+
+	/* Get friends By Id */
+	@GetMapping("/friends/{id}")
+	public ResponseEntity<Friend> getFriends(@PathVariable("id") String id) {
+		Friend friend = friendService.get(id);
+		if (friend == null) {
+			return new ResponseEntity<Friend>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Friend>(friend, HttpStatus.OK);
+	}
+
+	/* Get friends By Name */
+	@GetMapping("/friends/search")
+	public List<Friend> findByQuery(
+			@RequestParam(value = "first", required = false) String firstName,
+			@RequestParam(value = "last", required = false) String lastName) {
+		
+		List<Friend> friend = null;
+		
+		if ( firstName != null && !firstName.equalsIgnoreCase("") && 
+			 lastName != null && !lastName.equalsIgnoreCase("")	){
+			 friend = friendService.findFirstAndLastName(firstName, lastName);
+		} else if (firstName != null && !firstName.equalsIgnoreCase("")) {
+			 friend = friendService.findFirstName(firstName);
+		} else if ( lastName != null && !lastName.equalsIgnoreCase("")) {
+			 friend = friendService.findLastName(lastName);
+		}
+
+		return friend;
+	}
+
 }

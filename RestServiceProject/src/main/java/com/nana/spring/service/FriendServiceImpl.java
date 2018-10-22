@@ -47,5 +47,20 @@ public class FriendServiceImpl implements FriendService {
 	public Friend findFriend(String custId) {
 		return friendDAO.findFriend(custId);
 	}
-
+	
+	@Override
+	public List<Friend> findFirstAndLastName(String firstName, String lastName){
+		return friendDAO.findFirstAndLastName(firstName, lastName);
+	}
+	
+	@Override
+	public List<Friend> findFirstName(String firstName){
+		return friendDAO.findFirstName(firstName);
+	}
+	
+	@Override
+	public List<Friend> findLastName(String lastName){
+		return friendDAO.findLastName(lastName);
+	}
+	
 }

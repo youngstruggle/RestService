@@ -23,15 +23,14 @@ public class FriendDAOImpl implements FriendDAO {
 	/* Get Friend */
 	@Override
 	public List<Friend> list() {
-		List<Friend> FriendList = null;
+		List<Friend> friendList = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
-			FriendList = session.createCriteria(Friend.class).list();
+			friendList = session.createCriteria(Friend.class).list();
 			session.getTransaction().commit();
 			LOGGER.debug("Get Friend");
 
-			return FriendList;
 		} catch (HibernateException e) {
 			session.getTransaction().rollback();
 			LOGGER.error("Error Bung {}", e.getMessage());
@@ -39,7 +38,7 @@ public class FriendDAOImpl implements FriendDAO {
 			session.close();
 			LOGGER.info("Transaction Finish");
 		}
-		return null;
+		return friendList;
 	}
 
 	/* Get Friend By Id */
@@ -139,6 +138,64 @@ public class FriendDAOImpl implements FriendDAO {
 		} finally {
 			session.close();
 			LOGGER.info("Transaction finish");
+		}
+		return friend;
+	}
+	
+	/* Find friend by firstname and lastname */
+	@Override
+	public List<Friend> findFirstAndLastName(String firstName, String lastName) {
+		String query = null;
+		List<Friend> friend = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			query = "from Friend WHERE firstName = " + "'"+ firstName + "'" + " AND lastName = " + "'"+ lastName + "'";
+			System.out.println(query);
+			session.beginTransaction();
+			friend = session.createQuery(query).list();
+			System.out.println("masuk gan");
+			session.getTransaction().commit();
+			LOGGER.debug("Friend Size",friend.size());
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return friend;
+	}
+	
+	@Override
+	public List<Friend> findFirstName(String firstName) {
+		String query = null;
+		List<Friend> friend = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			query = "SELECT firstName FROM Friend WHERE firstName = " + "'"+ firstName + "'";
+			System.out.println(query);
+			session.beginTransaction();
+			friend = session.createQuery(query).list();
+			System.out.println("Query Firstname");
+			session.getTransaction().commit();
+			LOGGER.debug("Friend Size",friend.size());
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return friend;
+	}
+	
+	@Override
+	public List<Friend> findLastName(String lastName) {
+		String query = null;
+		List<Friend> friend = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			query = "SELECT lastName FROM Friend WHERE lastName = " + "'"+ lastName + "'";
+			System.out.println(query);
+			session.beginTransaction();
+			friend = session.createQuery(query).list();
+			System.out.println("Query Firstname");
+			session.getTransaction().commit();
+			LOGGER.debug("Friend Size",friend.size());
+		} catch (Exception e){
+			e.printStackTrace();
 		}
 		return friend;
 	}
