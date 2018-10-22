@@ -191,7 +191,7 @@ public class FriendDAOImpl implements FriendDAO {
 			System.out.println(query);
 			session.beginTransaction();
 			friend = session.createQuery(query).list();
-			System.out.println("Query Firstname");
+			System.out.println("Query LastName");
 			session.getTransaction().commit();
 			LOGGER.debug("Friend Size",friend.size());
 		} catch (Exception e){
